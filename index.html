@@ -12,33 +12,74 @@
     <title>桌游合集</title>
     <script>
         if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/service-worker.js')
-            .then(registration => {
-              console.log('Service Worker registered with scope:', registration.scope);
-    
-              // Check if the service worker is already controlling the page
-              if (navigator.serviceWorker.controller) {
-                return;
-              }
-    
-              // Listen for the 'controllerchange' event to refresh the page
-              navigator.serviceWorker.addEventListener('controllerchange', () => {
-                window.location.reload();
-              });
-            })
-            .catch(error => {
-              console.error('Service Worker registration failed:', error);
-            });
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+
+                    // Check if the service worker is already controlling the page
+                    if (navigator.serviceWorker.controller) {
+                        return;
+                    }
+
+                    // Listen for the 'controllerchange' event to refresh the page
+                    navigator.serviceWorker.addEventListener('controllerchange', () => {
+                        window.location.reload();
+                    });
+                })
+                .catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
         }
-      </script>
+        (function () {
+            function hasCookie(name) {
+                // 获取所有的 cookies
+                const cookies = document.cookie.split(';');
+
+                // 遍历所有 cookies
+                for (let cookie of cookies) {
+                    // 去除 cookie 前后的空格
+                    cookie = cookie.trim();
+
+                    // 检查 cookie 是否以指定的 name 开头
+                    if (cookie.startsWith(name + '=')) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+
+            function checkAndRequestCookie() {
+                if (!hasCookie('gid')) {
+                    let path = window.location.pathname;
+                    let pathSegments = path.split('/').filter(segment => segment.length > 0);
+
+                    if (pathSegments.length >= 2) {
+                        let requestUrl = 'https://friendgame.xf-yun.cn/proxy' + path;
+                        fetch(requestUrl, {
+                            method: 'GET',
+                        })
+                            .catch(error => {
+                                console.error('Error requesting cookie:', error);
+                            });
+                    }
+                }
+            }
+
+            // Initial check
+            checkAndRequestCookie();
+
+            // Repeatedly check every 5 seconds
+            setInterval(checkAndRequestCookie, 1000);
+        })();
+
+    </script>
     <script defer="defer" src="./main.1f852772.js"></script>
     <link href="./main.78da61e0.css" rel="stylesheet">
-    <link rel="preload" as="script"
-        href="./474.edef6fdf.chunk.js" />
-    <link rel="preload" as="script"
-        href="./app.6d365fda.chunk.js" />
-    <link rel="preload" as="script"
-        href="./index.6b430660.chunk.js" />
+    <link rel="preload" as="script" href="./474.edef6fdf.chunk.js" />
+    <link rel="preload" as="script" href="./app.6d365fda.chunk.js" />
+    <link rel="preload" as="script" href="./index.6b430660.chunk.js" />
 </head>
 
 <body>
