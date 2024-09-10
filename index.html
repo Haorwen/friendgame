@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./icon64-ed8a0a.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description"
+        content="桌游合集，包含一些联机网页游戏：卡坦岛、璀璨宝石、飞行棋、UNO、谁是卧底、阿瓦隆、一夜狼、狼人杀、德国心脏病、达芬奇密码、五子棋、围棋、象棋、国际象棋、斗地主、井字棋、炸飞机。公众号：线下聚会游戏。无广告，纯净版，支持在线联机对战。让你聚会时不带任何道具，就能跟朋友一起玩桌游。无需下载，点开即玩！享受纯粹的游戏！" />
+    <link rel="apple-touch-icon" href="./icon64-ed8a0a.png" />
+    <title>桌游合集</title>
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('Service Worker registered with scope:', registration.scope);
+    
+              // Check if the service worker is already controlling the page
+              if (navigator.serviceWorker.controller) {
+                return;
+              }
+    
+              // Listen for the 'controllerchange' event to refresh the page
+              navigator.serviceWorker.addEventListener('controllerchange', () => {
+                window.location.reload();
+              });
+            })
+            .catch(error => {
+              console.error('Service Worker registration failed:', error);
+            });
+        }
+      </script>
+    <script defer="defer" src="./main.1f852772.js"></script>
+    <link href="./main.78da61e0.css" rel="stylesheet">
+    <link rel="preload" as="script"
+        href="./474.edef6fdf.chunk.js" />
+    <link rel="preload" as="script"
+        href="./app.6d365fda.chunk.js" />
+    <link rel="preload" as="script"
+        href="./index.6b430660.chunk.js" />
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+</html>
